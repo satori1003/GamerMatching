@@ -18,7 +18,7 @@
             <div class='selects'>
                 @foreach($games as $game)
                     <div class='select'>
-                        <h2 class='title'>{{ $game->gametitle }} フリートーク</h2>
+                        <a href="/games/{{ $game->id }}"> <h2 class='title'>{{ $game->gametitle }} フリートーク</h2></a>
                         <p class='detail'>{{ $game->gametitle }}に関する話題なら何でもOK！</p>
                     </div>
                 @endforeach
