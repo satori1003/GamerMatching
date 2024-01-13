@@ -13,7 +13,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(PostController::class)->middleware(['auth'])->group(function(){
+Route::controller(GameController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'index')->name('index');    
 });
 
