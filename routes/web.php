@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TalkController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [GameController::class, 'index'])->name('Home');
@@ -24,3 +25,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/talk/{user}', [TalkController::class, 'openTalk']);
+
+Route::post('/talk', [GameController::class, 'sendMessage']);

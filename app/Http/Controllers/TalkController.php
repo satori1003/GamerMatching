@@ -11,7 +11,7 @@ use App\Events\MessageSent;
 
 class TalkController extends Controller
 {
-    public function openChat(User $user)
+    public function openTalk(User $user)
         {
             $myUserId = auth()->user()->id;
             $otherUserId = $user->id;
