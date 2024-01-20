@@ -27,3 +27,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/talk/{user}', [TalkController::class, 'openTalk']);
+
+Route::post('/talk', [GameController::class, 'sendMessage']);
