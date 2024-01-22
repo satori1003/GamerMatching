@@ -29,3 +29,8 @@ require __DIR__.'/auth.php';
 Route::get('/talk/{user}', [TalkController::class, 'openTalk']);
 
 Route::post('/talk', [GameController::class, 'sendMessage']);
+
+Route::get('/messages/{message}',[GameController::class,'comment'])
+
+Route::post('/comments/{comment_id}',[CommentController::class,'store']);
+Route::get('/comments/{comment_id}',[CommentController::class,'destroy']);

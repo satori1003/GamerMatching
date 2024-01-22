@@ -8,6 +8,7 @@
         <h1 class='title'>
             {{ $game->gametitle }} トークルーム
         </h1>
+    <a href="/messages/{{ $messages->id }}">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -30,6 +31,7 @@
             </div>
         </div>
     </div>
+    </a>
         <div class='footer'>
             <a href="/home">戻る</a>
         </div>
