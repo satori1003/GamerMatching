@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -10,7 +12,7 @@ class CommentController extends Controller
     {
         $comment = new Comment();
         $comment->comment = $request->comment;
-        $comment->message_id = $request->message_id
+        $comment->message_id = $request->message_id;
         $comment->user_id = Auth::user()->id;
         $comment->save();
         

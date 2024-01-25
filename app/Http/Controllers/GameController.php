@@ -50,6 +50,6 @@ class GameController extends Controller
     
     public function comment(Message $message)
     {
-        return view('comments/comment')->with(['message' => $messages,'comments' => $comments]);
+        return view('comments/comment')->with(['message' => $message]);
     }
 }
