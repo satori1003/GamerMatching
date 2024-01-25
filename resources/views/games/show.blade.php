@@ -20,10 +20,12 @@
                 
                     <ul class="list-disc" id="list_message">
                         @foreach ($messages as $message)
+                        <a href="/messages/{{ $message->id }}">
                             <li>
-                                <strong>{{ $message->user->name }}:</strong>
+                                <strong>{{ $message->user->name }}:x</strong>
                                 <div>{{ $message->body }}</div>
                             </li>
+                        </a>
                         @endforeach
                     </ul>
                 </div>

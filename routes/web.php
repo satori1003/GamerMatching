@@ -5,6 +5,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TalkController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
 
 Route::get('/home', [GameController::class, 'index'])->name('Home');
 
@@ -29,3 +30,8 @@ require __DIR__.'/auth.php';
 Route::get('/talk/{user}', [TalkController::class, 'openTalk']);
 
 Route::post('/talk', [GameController::class, 'sendMessage']);
+
+Route::get('/messages/{message}',[GameController::class,'comment']);
+
+Route::post('/comments/{comment_id}/comments',[CommentController::class,'store']);
+Route::get('/comments/{comment_id}',[CommentController::class,'destroy']);

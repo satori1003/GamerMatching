@@ -47,4 +47,9 @@ class GameController extends Controller
 
         return response()->json(['message' => 'Message sent successfully']);
     }
+    
+    public function comment(Message $message)
+    {
+        return view('comments/comment')->with(['message' => $message]);
+    }
 }
