@@ -30,20 +30,21 @@ class GameController extends Controller
 
         // リクエストからデータの取り出し
         $strMessage = $request->input('message');
-
-        // メッセージオブジェクトの作成
-        $chat = new Chat;
-        $chat->body = $strMessage;
-        $chat->game_id = $request->input('game_id');
-
-        $chat->userName = $strUsername;
-        MessageSent::dispatch($chat);    
-
+        
         //データベースへの保存処理
         $message->user_id = $strUserId;
         $message->body = $strMessage;
         $message->game_id = $request->input('game_id');
         $message->save();
+        
+        // メッセージオブジェクトの作成
+        $chat = new Chat;
+        $chat->body = $strMessage;
+        $chat->game_id = $request->input('game_id');
+        $chat->message_id = $message->id;
+        $chat->created_at = $message->created_at;
+        $chat->userName = $strUsername;
+        MessageSent::dispatch($chat);    
 
         return response()->json(['message' => 'Message sent successfully']);
     }
