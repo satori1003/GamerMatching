@@ -33,5 +33,5 @@ Route::post('/talk', [GameController::class, 'sendMessage']);
 
 Route::get('/messages/{message}',[GameController::class,'comment']);
 
-Route::post('/comments/{comment_id}/comments',[CommentController::class,'store']);
-Route::get('/comments/{comment_id}',[CommentController::class,'destroy']);
+Route::post('/comments/{comment}/comments',[CommentController::class,'store']);
+Route::get('/comments/{comment}',[CommentController::class,'destroy']);

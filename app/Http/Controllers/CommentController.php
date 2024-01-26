@@ -15,14 +15,13 @@ class CommentController extends Controller
         $comment->message_id = $request->message_id;
         $comment->user_id = Auth::user()->id;
         $comment->save();
-        
-        return redirect('/');
+        return redirect('/messages/' .$comment->message_id);
     }
     
     public function destroy(Request $request)
     {
         $comment = Comment::find($request->comment_id);
         $comment->delete();
-        return redirect('/');
+        return redirect('/messages/' .$comment->message_id);
     }
 }

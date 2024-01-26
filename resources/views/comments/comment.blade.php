@@ -13,19 +13,26 @@
             comment
         </x-slot>
         <body class="antialiased">
-            @foreach ($message->comments as $comment)
-            <div class="mb-2">
-                <span>{{ $comment->comment }}</span>
+            <div>
+              <p>{{ $message->user->name}}</p>
+              <p>{{ $message->body}}</p>
+              <p>{{ $message->created_at}}</p>
             </div>
-            @endforeach
             <div class="row actions">
                 <form class="w-100" id="new_comment" action="/comments/{{ $message->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
                    @csrf
                     <input value="{{ $message->id }}" type="hidden" name="message_id" />
-                    <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
                     <input class="form-control comment-input border-0" placeholder="コメント ..." autocomplete="off" type="text" name="comment" />
                 </form>
             </div>
+            @foreach ($message->comments as $comment)
+            <div class="mb-2">
+                <p>{{ $comment->user->name }}</p>
+                <p>{{ $comment->comment }}</p>
+                <p>{{ $comment->created_at}}</p>
+            </div>
+            @endforeach
+            
         </body>
     </x-app-layout>
 </html>

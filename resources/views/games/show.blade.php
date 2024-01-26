@@ -22,8 +22,9 @@
                         @foreach ($messages as $message)
                         <a href="/messages/{{ $message->id }}">
                             <li>
-                                <strong>{{ $message->user->name }}:x</strong>
+                                <strong>{{ $message->user->name }}</strong>
                                 <div>{{ $message->body }}</div>
+                                <p>{{ $message->created_at}}</p>
                             </li>
                         </a>
                         @endforeach
@@ -70,7 +71,11 @@
         }
         window.addEventListener("DOMContentLoaded", () => {
             const elementListMessage = document.getElementById("list_message");
-            
+            // created_atのフォーマット関数
+    function formatCreatedAt(createdAt) {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        return new Date(createdAt).toLocaleString('ja-JP', options);
+    }
             
             // Listen開始と、イベント発生時の処理の定義
             window.Echo.private('chat').listen('MessageSent', (e) => {
@@ -80,14 +85,23 @@
                 if (e.chat.game_id === gameId) {
                     let strUsername = e.chat.userName;
                     let strMessage = e.chat.body;
+                    let messageId = e.chat.message_id;
+                    let createdAt = e.chat.created_at;
         
                     let elementLi = document.createElement("li");
                     let elementUsername = document.createElement("strong");
                     let elementMessage = document.createElement("div");
+                    let elementCreatedAt = document.createElement("p");
+                    
                     elementUsername.textContent = strUsername;
                     elementMessage.textContent = strMessage;
+                    elementCreatedAt.textContent = formatCreatedAt(createdAt);
+                    elementMessage.addEventListener("click", () => {
+                        window.location.href = `/messages/${messageId}`;
+                    });
                     elementLi.append(elementUsername);
                     elementLi.append(elementMessage);
+                    elementLi.append(elementCreatedAt);
                     elementListMessage.prepend(elementLi); // リストの一番上に追加
                 }
             });
